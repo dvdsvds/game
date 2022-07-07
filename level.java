@@ -1,20 +1,23 @@
-public class level {
-    commands c = new commands();
+import java.util.Scanner;
 
-    int x;
-    int y;
+public class level {
+    Scanner sel_coordinate = new Scanner(System.in);
+    Scanner active = new Scanner(System.in);
+    commands c = new commands();
 
     public void easy() {
         int[] four_width = {1,2,3,4};
         int[] four_length = {1,2,3,4};
-        
+
         int x;
         int y;
+        
         System.out.println("맵의 크기 : 4 x 4\n");
         for(int i = 0; i < four_width.length; i++) {
             x = four_width[i];
             System.out.print("  " + x + " ");
         }
+
         System.out.println("");
         
         for(int j = 0; j < four_length.length; j++) {
@@ -24,57 +27,43 @@ public class level {
             System.out.println(" " + "@" + "   " + "@" + "   " + "@" + "   " + "@");
             System.out.println("");
         }
-        // easy 난이도 x 값 지정
 
-        // easy 난이도 y 값 지정
+        // 생성될 좌표 지정(가장자리만 가능)       
+        System.out.println("\n생성될 좌표를 지정해주세요.");
+        System.out.println("* 가장자리만 가능합니다. *");
+        System.out.println("예시) x = 1, y = 4(0)\n      x = 2, y = 2(x)\n");
 
+        while(true) {
+            System.out.print("x좌표를 입력해주세요 >> ");
+            int coordinate_x = sel_coordinate.nextInt();
 
+            System.out.print("y좌표를 입력해주세요 >> ");
+            int coordinate_y = sel_coordinate.nextInt();
+
+            while(true) {
+                if((coordinate_x == 2 && coordinate_y == 2) || (coordinate_x == 2 && coordinate_y == 3) || (coordinate_x == 3 && coordinate_y == 2) || (coordinate_x == 3 && coordinate_y == 3)) {
+                    System.out.println("가장자리만 가능합니다.");
+                    System.out.println("다시 입력해주세요");
+                    break;
+                }
+                else {
+                    System.out.println("생성된 x좌표는 " + coordinate_x + "이고, " + "y좌표는 " + coordinate_y + "입니다.");
+                    break;
+                }
+            }
+            break;
+        }
+
+        System.out.println("\n행동을 입력하세요");
+        while(true) {
+            System.out.print(">> ");
+
+            String act = active.next();
+
+            if(act.equals("end")) {
+                break;
+            }
+        }
     }
-
-    // public void normal() {
-    //     int[] five_width = {1,2,3,4,5};
-    //     int[] five_length = {1,2,3,4,5};
-        
-    //     int x;
-    //     int y;
-    //     System.out.println("맵의 크기 : 5 x 5\n");
-    //     for(int i = 0; i < five_width.length; i++) {
-    //         x = five_width[i];
-    //         System.out.print("  " + x + " ");
-    //     }
-    //     System.out.println("");
-        
-    //     for(int j = 0; j < five_length.length; j++) {
-    //         y = five_length[j];
-    //         System.out.print(y);
-
-    //         System.out.println(" " + "@" + "   " + "@" + "   " + "@" + "   " + "@" + "   " + "@");
-    //         System.out.println("");
-    //     }   
-
-    // } 
-    
-    // public void hard() {
-    //     int[] six_width = {1,2,3,4,5,6};
-    //     int[] six_length = {1,2,3,4,5,6};
-        
-    //     int x;
-    //     int y;
-    //     System.out.println("맵의 크기 : 6 x 6\n");
-    //     for(int i = 0; i < six_width.length; i++) {
-    //         x = six_width[i];
-    //         System.out.print("  " + x + " ");
-    //     }
-    //     System.out.println("");
-        
-    //     for(int j = 0; j < six_length.length; j++) {
-    //         y = six_length[j];
-    //         System.out.print(y);
-
-    //         System.out.println(" " + "@" + "   " + "@" + "   " + "@" + "   " + "@" + "   " + "@" + "   " + "@");
-    //         System.out.println("");
-
-    //     }
-    // }
 }
 
