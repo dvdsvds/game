@@ -19,18 +19,22 @@ public class game {
             System.out.println("");
 
             if(sel.equals("help")) {
-                System.out.println(" <게임 방법> ");
-                System.out.println(" 설명 글로만 판단해야하고, 4가지 명령어만 사용가능합니다.");
-                System.out.println(" 난이도에 따라 맵의 크기가 정해지고, 캐릭터가 생성되는 장소는 랜덤이며, 생성된 장소를 알려주지 않습니다.");
-                System.out.println(" Finish를 찾으면 게임이 종료됩니다.");
+                System.out.println("===========");
+                System.out.println("<게임 방법>");
+                System.out.println("설명 글로만 판단해야하고, 4가지 명령어만 사용가능합니다.");
+                System.out.println("난이도에 따라 맵의 크기가 정해지고, 캐릭터가 생성되는 좌표는 랜덤입니다.");
+                System.out.println("Finish를 찾으면 게임이 종료됩니다.");
+                System.out.println("===========\n");
             } 
 
             else if(sel.equals("command")) {
-                System.out.println(" <명령어> ");
-                System.out.println(" - walk()");
-                System.out.println(" - jump()");
-                System.out.println(" - back()");
-                System.out.println(" - turn(?) -> ? 는 right, left로 입력하여 방향을 바꿀 수 있습니다.");
+                System.out.println("========");
+                System.out.println("<명령어>");
+                System.out.println("- walk()");
+                System.out.println("- jump()");
+                System.out.println("- back()");
+                System.out.println("- turn(?) -> ? 는 right, left를 대입해 방향을 바꿀 수 있습니다");
+                System.out.println("========\n");
             } 
 
             else if(sel.equals("q") || sel.equals("Q") || sel.equals("quit") || sel.equals("QUIT")) {
@@ -38,7 +42,7 @@ public class game {
             }
 
             else {
-                System.out.println("다시 입력해주세요.");
+                System.out.println("다시 입력해주세요.\n");
             }
         }
 
