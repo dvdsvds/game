@@ -4,24 +4,33 @@ import java.util.Scanner;
 public class game {
     public static void main(String[] args) throws IOException {
         commands c = new commands();
-        ex ex = new ex();
-        map map = new map();
+        level le = new level();
         
         Scanner sc = new Scanner(System.in);
 
-        String[] dif = {"초급", "중급", "고급"};
+        String[] dif = {"초급"};
+        // , "중급", "고급"
 
         while(true) {
-            ex.help_ex();
+            System.out.println("도움말을 보시려면 help, 명령어 목록을 보시려면 command를 입력해주세요");
+            System.out.println("q 입력시 게임이 시작됩니다.");
+            System.out.print(">> ");
             String sel = sc.next();
             System.out.println("");
 
             if(sel.equals("help")) {
-                ex.help();
+                System.out.println(" <게임 방법> ");
+                System.out.println(" 설명 글로만 판단해야하고, 4가지 명령어만 사용가능합니다.");
+                System.out.println(" 난이도에 따라 맵의 크기가 정해지고, 캐릭터가 생성되는 장소는 랜덤이며, 생성된 장소를 알려주지 않습니다.");
+                System.out.println(" Finish를 찾으면 게임이 종료됩니다.");
             } 
 
             else if(sel.equals("command")) {
-                ex.command_help();
+                System.out.println(" <명령어> ");
+                System.out.println(" - walk()");
+                System.out.println(" - jump()");
+                System.out.println(" - back()");
+                System.out.println(" - turn(?) -> ? 는 right, left로 입력하여 방향을 바꿀 수 있습니다.");
             } 
 
             else if(sel.equals("q") || sel.equals("Q") || sel.equals("quit") || sel.equals("QUIT")) {
@@ -33,44 +42,34 @@ public class game {
             }
         }
 
-        ex.gameStart_ex();
+        System.out.println("게임을 시작하시려면 y를 입력해주세요");
+        System.out.println("y가 아닌 다른 것을 입력하시면 게임이 종료됩니다.");
+        System.out.print(">> ");
+
         String yn = sc.next();
         System.out.println("");
 
-        
-        if(yn.equals("y")) {
-            String difficulty = c.difficulty(dif);
-            System.out.println("게임의 난이도는 [" + difficulty + "] 입니다.");
-
-            if(difficulty.equals("초급")) {
-                System.out.println("맵의 크기 : 4 x 4\n");
-                System.out.println("생성된 곳은 <" + c.random(16) + "> 입니다.\n\n");
-
+            if(yn.equals("y")) {
+                while(true) {
+                String difficulty = c.difficulty(dif);
+                System.out.println("게임의 난이도는 [" + difficulty + "] 입니다.");
                 
-                map.four();
-            }
+                    if(difficulty.equals("초급")) {
+                        le.easy();
+                    }
 
-            else if(difficulty.equals("중급")) {
-                System.out.println("맵의 크기 : 5 x 5\n");
-                System.out.println("생성된 곳은 <" + c.random(25) + "> 입니다.\n\n");
+                    // else if(difficulty.equals("중급")) {
+                    //     le.normal();
+                    // }
 
-                map.five();
-            }
-
-
-            else if(difficulty.equals("고급")) {
-                System.out.println("맵의 크기 : 6 x 6\n");
-                System.out.println("생성된 곳은 <" + c.random(36) + "> 입니다.\n\n");
-
-                map.six();
-            }
-
+                    // else if(difficulty.equals("고급")) {
+                    //     le.hard();
+                    // }
+                }
+            } 
+            else {
+                System.out.println(("게임을 종료합니다."));
+        }
         sc.close();
-
-        }
-
-        else {
-            System.out.println(("게임을 종료합니다."));
-        }
     }
 }
