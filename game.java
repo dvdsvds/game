@@ -3,8 +3,8 @@ import java.util.Scanner;
 
 public class game {
     public static void main(String[] args) throws IOException {
-        commands c = new commands();
-        level le = new level();
+        functions c = new functions();
+        easy le = new easy();
         
         Scanner sc = new Scanner(System.in);
 
@@ -13,7 +13,6 @@ public class game {
         while(true) {
             c.start_help();
             String sel = sc.next();
-
             System.out.println("");
 
             if(sel.equals("help")) {
@@ -34,7 +33,7 @@ public class game {
             System.out.println("게임의 난이도는 [" + difficulty + "] 입니다.");
             
             if(difficulty.equals("쉬움")) {
-                le.easy();
+                le.easy_level();
                 break;
             }
         }
