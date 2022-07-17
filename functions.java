@@ -29,8 +29,8 @@ public class functions {
         System.out.println("- back : x좌표가 값을 입력한 만큼 감소합니다.");
         System.out.println("         turn(?) 입력 후 값을 입력한 만큼 감소합니다.\n");
         System.out.println("- here : 현재의 좌표를 알려줍니다.\n");
-        System.out.println("- turn(left) : 왼쪽으로 돕니다.\n");
-        System.out.println("- turn(right) : 오른쪽으로 돕니다.");
+        System.out.println("- turn-l : 왼쪽으로 돕니다.\n");
+        System.out.println("- turn-r : 오른쪽으로 돕니다.");
         System.out.println("========\n");
     }
     
@@ -120,6 +120,14 @@ public class functions {
                         continue;
                     }
                 }
+                
+                else if(act.equals("turn-left") && act_arr.length == 9) { 
+                    turn(1);
+                }
+
+                else if(act.equals("turn-right") && act_arr.length == 10) { 
+                    turn(0);
+                }
 
                 else if(act.equals("here") && act_arr.length == 4) { 
                     here();
@@ -128,7 +136,8 @@ public class functions {
                 else if(act.equals("end")) {
                     break;
                 }
-                else if(!(act.equals("walk") || act.equals("back"))){
+
+                else if(!(act.equals("walk") || act.equals("back") || act.equals("turn-left") || act.equals("turn-right"))){
                     System.out.println("! 값을 잘못 입력하셨습니다.");
                     continue;
                 }
@@ -155,12 +164,12 @@ public class functions {
         }
     }
 
-    public void turn(String direction) {
-        if(direction == "left") {
+    public void turn(int leftOrrignt) {
+        if(leftOrrignt == 1) {
             System.out.println("왼쪽으로 돕니다.");
         } 
 
-        else if(direction == "right") {
+        else if(leftOrrignt == 0) {
             System.out.println("오른쪽으로 돕니다.");
         } 
 
