@@ -24,7 +24,7 @@ public class easy {
         // 생성 좌표 지정      
         f.sel_coordinate();
         System.out.println("\n행동을 입력하세요");
-        f.active();
+        f.easy_active();
         
     }
 }
