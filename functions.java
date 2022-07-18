@@ -122,11 +122,11 @@ public class functions {
                 }
                 
                 else if(act.equals("turn-left") && act_arr.length == 9) { 
-                    turn(1);
+                    turn_left();
                 }
 
                 else if(act.equals("turn-right") && act_arr.length == 10) { 
-                    turn(0);
+                    turn_right();
                 }
 
                 else if(act.equals("here") && act_arr.length == 4) { 
@@ -164,18 +164,12 @@ public class functions {
         }
     }
 
-    public void turn(int leftOrrignt) {
-        if(leftOrrignt == 1) {
-            System.out.println("왼쪽으로 돕니다.");
-        } 
+    public void turn_right() {
+        System.out.println("오른쪽으로 돕니다.");
+    }
 
-        else if(leftOrrignt == 0) {
-            System.out.println("오른쪽으로 돕니다.");
-        } 
-
-        else {
-            System.out.println("방향이 잘못되었습니다.");
-        }
+    public void turn_left() {
+        System.out.println("왼쪽으로 돕니다.");
     }
 
     public void here() {
