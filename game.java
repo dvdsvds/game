@@ -51,11 +51,11 @@ public class game {
                 // 생성 좌표 지정      
                 f.sel_coordinate();
                 // 찾아야 하는 목표 랜덤 생성
-                
                 System.out.println("목표물이 생성되었습니다.");
-
+                f.same();
                 System.out.println("\n행동을 입력하세요");
                 f.active();
+
                 break;
             }
         }

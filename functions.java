@@ -1,10 +1,12 @@
 import java.util.concurrent.TimeUnit;
 import java.lang.Math;
 import java.util.Scanner;
+import java.util.Random;
 
 public class functions {
     Scanner active = new Scanner(System.in);
     Scanner sel_coor = new Scanner(System.in);
+    Random random_coordinate = new Random();
 
     public void start_help() {
         System.out.println("도움말을 보시려면 help, 명령어 목록을 보시려면 command를 입력해주세요");
@@ -56,6 +58,47 @@ public class functions {
         return difficulty[num];
     }
 
+
+    public void xwalk() {
+        coordinate_x++;
+        
+        if(coordinate_x < 8) {
+            System.out.println("1칸 앞으로 갑니다.");
+            System.out.println("당신의 x좌표는 " + coordinate_x + ", y좌표는 " + coordinate_y + "입니다." );
+        } 
+    }
+
+    public void xback() {
+        coordinate_x--;
+
+        if(coordinate_x > 0) {
+            System.out.println("1칸 뒤로 갑니다.");
+            System.out.println("당신의 x좌표는 " + coordinate_x + ", y좌표는 " + coordinate_y + "입니다." );
+        }
+    }
+
+    public void ywalk() {
+        coordinate_y++; 
+        
+        if(coordinate_y < 8) {
+            System.out.println("1칸 앞으로 갑니다.");
+            System.out.println("당신의 x좌표는 " + coordinate_x + ", y좌표는 " + coordinate_y + "입니다." );
+        } 
+    }
+
+    public void yback() {
+        coordinate_y--;
+
+        if(coordinate_y > 0) {
+            System.out.println("1칸 뒤로 갑니다.");
+            System.out.println("당신의 x좌표는 " + coordinate_x + ", y좌표는 " + coordinate_y + "입니다." );
+        }
+    }
+
+    public void here() {
+        System.out.println("당신의 x좌표는 " + coordinate_x + "이고, y좌표는 " + coordinate_y + "입니다." );
+    }
+
     int coordinate_x;
     int coordinate_y;
     public void sel_coordinate() {
@@ -86,46 +129,6 @@ public class functions {
     }
 
 
-    public void xwalk() {
-        coordinate_x++;
-        
-        if(coordinate_x < 5) {
-            System.out.println("1칸 앞으로 갑니다.");
-            System.out.println("당신의 x좌표는 " + coordinate_x + ", y좌표는 " + coordinate_y + "입니다." );
-        } 
-    }
-
-    public void xback() {
-        coordinate_x--;
-
-        if(coordinate_x > 0) {
-            System.out.println("1칸 뒤로 갑니다.");
-            System.out.println("당신의 x좌표는 " + coordinate_x + ", y좌표는 " + coordinate_y + "입니다." );
-        }
-    }
-
-    public void ywalk() {
-        coordinate_y++; 
-        
-        if(coordinate_y < 5) {
-            System.out.println("1칸 앞으로 갑니다.");
-            System.out.println("당신의 x좌표는 " + coordinate_x + ", y좌표는 " + coordinate_y + "입니다." );
-        } 
-    }
-
-    public void yback() {
-        coordinate_y--;
-
-        if(coordinate_y > 0) {
-            System.out.println("1칸 뒤로 갑니다.");
-            System.out.println("당신의 x좌표는 " + coordinate_x + ", y좌표는 " + coordinate_y + "입니다." );
-        }
-    }
-
-    public void here() {
-        System.out.println("당신의 x좌표는 " + coordinate_x + "이고, y좌표는 " + coordinate_y + "입니다." );
-    }
-
     public void active() {
         while(true) {
             while(true) {
@@ -135,10 +138,10 @@ public class functions {
 
                 if(act.equals("xwalk") && act_arr.length == 5) {
                     xwalk();
-                    if(coordinate_x >= 5) {
+                    if(coordinate_x >= 8) {
                         System.out.println("맵 밖으로 빠져나갈수 없습니다.");
                         System.out.println("다시 입력해주세요");
-                        coordinate_x = 4;
+                        coordinate_x = 7;
                         continue;
                     }
                 }
@@ -157,7 +160,7 @@ public class functions {
                 else if(act.equals("ywalk") && act_arr.length == 5) {
                     ywalk();
                     
-                    if(coordinate_y >= 5) {
+                    if(coordinate_y >= 8) {
                         System.out.println("맵 밖으로 빠져나갈수 없습니다.");
                         System.out.println("다시 입력해주세요");
                         coordinate_y = 4;
@@ -193,5 +196,14 @@ public class functions {
         }
     }
 
+    int[] same_x = {1,2,3,4,5,6,7};
+    int[] same_y = {1,2,3,4,5,6,7};
+    public void same() {
 
+        int x = same_x[random_coordinate.nextInt(7)];
+        int y = same_y[random_coordinate.nextInt(7)];
+        System.out.println(x);
+        System.out.println(y);
+
+    }
 }
