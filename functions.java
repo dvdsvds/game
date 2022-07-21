@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class functions {
     Scanner active = new Scanner(System.in);
-    Scanner sel_coordinate = new Scanner(System.in);
+    Scanner sel_coor = new Scanner(System.in);
 
     public void start_help() {
         System.out.println("도움말을 보시려면 help, 명령어 목록을 보시려면 command를 입력해주세요");
@@ -24,13 +24,11 @@ public class functions {
     public void command() {
         System.out.println("========");
         System.out.println("<명령어>");
-        System.out.println("- walk : x좌표가 값을 입력한 만큼 증가합니다.");
-        System.out.println("         turn(?) 입력 후 y좌표가 값을 입력한 만큼 증가합니다.\n");
-        System.out.println("- back : x좌표가 값을 입력한 만큼 감소합니다.");
-        System.out.println("         turn(?) 입력 후 값을 입력한 만큼 감소합니다.\n");
+        System.out.println("- xwalk : x좌표가 1만큼 증가합니다.");
+        System.out.println("- ywalk : y좌표가 1만큼 증가합니다.");
+        System.out.println("- xback : x좌표가 1만큼 감소합니다.");
+        System.out.println("- yback : y좌표가 1만큼 증가합니다.");
         System.out.println("- here : 현재의 좌표를 알려줍니다.\n");
-        System.out.println("- turn-l : 왼쪽으로 돕니다.\n");
-        System.out.println("- turn-r : 오른쪽으로 돕니다.");
         System.out.println("========\n");
     }
     
@@ -68,17 +66,12 @@ public class functions {
         while(true) {
             while(true) {
                 System.out.print("x좌표를 입력해주세요 >> ");
-                coordinate_x = sel_coordinate.nextInt();
+                coordinate_x = sel_coor.nextInt();
 
                 System.out.print("y좌표를 입력해주세요 >> ");
-                coordinate_y = sel_coordinate.nextInt();
+                coordinate_y = sel_coor.nextInt();
 
-                if((coordinate_x == 2 && coordinate_y == 2) || (coordinate_x == 2 && coordinate_y == 3) || (coordinate_x == 3 && coordinate_y == 2) || (coordinate_x == 3 && coordinate_y == 3)) {
-                    System.out.println("가장자리만 가능합니다.");
-                    System.out.println("다시 입력해주세요");
-                    continue;
-                }
-                else if((coordinate_x > 4 || coordinate_y > 4)) {
+                if((coordinate_x > 7 || coordinate_y > 7)) {
                     System.out.println("값이 잘못되었습니다.");
                     System.out.println("다시 입력해주세요.");
                     continue;
@@ -92,62 +85,9 @@ public class functions {
         }
     }
 
-    public void easy_active() {
-        while(true) {
-            while(true) {
-                System.out.print(">> ");
-                String act = active.nextLine();
-                String[] act_arr = act.split("");
 
-                if(act.equals("walk") && act_arr.length == 4) {
-                    walk();
-                    
-                    if(coordinate_x >= 5) {
-                        System.out.println("맵 밖으로 빠져나갈수 없습니다.");
-                        System.out.println("다시 입력해주세요");
-                        coordinate_x = 4;
-                        continue;
-                    }
-                }
-
-                else if(act.equals("back") && act_arr.length == 4) { 
-                    back();
-
-                    if(coordinate_x <= 0) {
-                        System.out.println("맵 밖으로 빠져나갈수 없습니다.");
-                        System.out.println("다시 입력해주세요");
-                        coordinate_x = 1;
-                        continue;
-                    }
-                }
-                
-                else if(act.equals("turn-left") && act_arr.length == 9) { 
-                    turn_left();
-                }
-
-                else if(act.equals("turn-right") && act_arr.length == 10) { 
-                    turn_right();
-                }
-
-                else if(act.equals("here") && act_arr.length == 4) { 
-                    here();
-                }
-
-                else if(act.equals("end")) {
-                    break;
-                }
-
-                else if(!(act.equals("walk") || act.equals("back") || act.equals("turn-left") || act.equals("turn-right"))){
-                    System.out.println("! 값을 잘못 입력하셨습니다.");
-                    continue;
-                }
-            }
-            break;
-        }
-    }
-
-    public void walk() {
-        coordinate_x++; 
+    public void xwalk() {
+        coordinate_x++;
         
         if(coordinate_x < 5) {
             System.out.println("1칸 앞으로 갑니다.");
@@ -155,7 +95,7 @@ public class functions {
         } 
     }
 
-    public void back() {
+    public void xback() {
         coordinate_x--;
 
         if(coordinate_x > 0) {
@@ -164,15 +104,94 @@ public class functions {
         }
     }
 
-    public void turn_right() {
-        System.out.println("오른쪽으로 돕니다.");
+    public void ywalk() {
+        coordinate_y++; 
+        
+        if(coordinate_y < 5) {
+            System.out.println("1칸 앞으로 갑니다.");
+            System.out.println("당신의 x좌표는 " + coordinate_x + ", y좌표는 " + coordinate_y + "입니다." );
+        } 
     }
 
-    public void turn_left() {
-        System.out.println("왼쪽으로 돕니다.");
+    public void yback() {
+        coordinate_y--;
+
+        if(coordinate_y > 0) {
+            System.out.println("1칸 뒤로 갑니다.");
+            System.out.println("당신의 x좌표는 " + coordinate_x + ", y좌표는 " + coordinate_y + "입니다." );
+        }
     }
 
     public void here() {
         System.out.println("당신의 x좌표는 " + coordinate_x + "이고, y좌표는 " + coordinate_y + "입니다." );
     }
+
+    public void active() {
+        while(true) {
+            while(true) {
+                System.out.print(">> ");
+                String act = active.nextLine();
+                String[] act_arr = act.split("");
+
+                if(act.equals("xwalk") && act_arr.length == 5) {
+                    xwalk();
+                    if(coordinate_x >= 5) {
+                        System.out.println("맵 밖으로 빠져나갈수 없습니다.");
+                        System.out.println("다시 입력해주세요");
+                        coordinate_x = 4;
+                        continue;
+                    }
+                }
+
+                else if(act.equals("xback") && act_arr.length == 5) { 
+                    xback();
+
+                    if(coordinate_x <= 0) {
+                        System.out.println("맵 밖으로 빠져나갈수 없습니다.");
+                        System.out.println("다시 입력해주세요");
+                        coordinate_x = 1;
+                        continue;
+                    }
+                }
+
+                else if(act.equals("ywalk") && act_arr.length == 5) {
+                    ywalk();
+                    
+                    if(coordinate_y >= 5) {
+                        System.out.println("맵 밖으로 빠져나갈수 없습니다.");
+                        System.out.println("다시 입력해주세요");
+                        coordinate_y = 4;
+                        continue;
+                    }
+                }
+
+                else if(act.equals("yback") && act_arr.length == 5) { 
+                    yback();
+
+                    if(coordinate_y <= 0) {
+                        System.out.println("맵 밖으로 빠져나갈수 없습니다.");
+                        System.out.println("다시 입력해주세요");
+                        coordinate_y = 1;
+                        continue;
+                    }
+                }
+                
+                else if(act.equals("here") && act_arr.length == 4) { 
+                    here();
+                }
+
+                else if(act.equals("end")) {
+                    break;
+                }
+
+                else if(!(act.equals("xwalk") || act.equals("ywalk") || act.equals("xback") || act.equals("yback"))){
+                    System.out.println("! 값을 잘못 입력하셨습니다.");
+                    continue;
+                }
+            }
+            break;
+        }
+    }
+
+
 }
